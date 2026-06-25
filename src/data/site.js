@@ -1,8 +1,8 @@
 const supportEmail = 'hasan_alay@outlook.com';
-const testflightUrl = 'https://testflight.apple.com/join/gZMW6HEr';
-const appStoreUrl = {
-  tr: 'https://apps.apple.com/tr/app/vaktio/id6774295131?l=tr',
-  en: 'https://apps.apple.com/us/app/vaktio/id6774295131',
+const appStoreUrl = 'https://apps.apple.com/us/app/vaktio/id6774295131';
+const playStoreUrl = {
+  tr: 'https://play.google.com/store/apps/details?id=com.hasanalay.vaktioplus&hl=tr',
+  en: 'https://play.google.com/store/apps/details?id=com.hasanalay.vaktioplus&hl=en',
 };
 const basePath = import.meta.env.BASE_URL || '/';
 const normalizedBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`;
@@ -14,11 +14,10 @@ const buildMailto = (subject, body) =>
 export const site = {
   brand: 'HHStudio',
   title: 'Vaktio+',
-  description: 'Namaz vakitleri, kıble ve günlük takip için sade bir ürün sayfası.',
+  description: 'Vaktio+, namaz vakitlerini göstermenin ötesine geçen; ritim, istikrar ve kişisel ibadet takibi odaklı sade bir yardımcıdır.',
   version: '1.0.0',
   defaultLocale: 'tr',
   locales: ['tr', 'en'],
-  testflightUrl,
   supportEmail,
   supportSubject: 'Vaktio+ Destek',
   supportBody: 'Merhaba,\n\nCihaz modeli:\nİşletim sistemi:\nUygulama sürümü: 1.0.0\nSorun / öneri:\n',
@@ -28,7 +27,6 @@ export const site = {
   },
   homePath: normalizedBasePath,
   vaktioPath: withBase('vaktio/'),
-  androidTestPath: withBase('vaktio/android-test/'),
   privacyPath: withBase('vaktio/privacy/'),
   supportPath: withBase('vaktio/support/'),
   faviconPath: withBase('assets/apps/vaktio-plus/favicon.png'),
@@ -79,35 +77,57 @@ export const copy = {
     common: {
       close: 'Kapat',
       language: 'Dil',
+      downloadLabel: 'İndir',
     },
     home: {
       pageTitle: 'Vaktio+ · HHStudio',
-      pageDescription: 'Namaz vakitleri, kıble ve günlük takip için sade bir ürün sayfası.',
+      pageDescription: 'Vaktio+, namaz ritmini ve istikrarını görünür hale getiren sade bir ibadet eşlikçisidir.',
       hero: {
-        tagline: 'Namaz ritmini sakin tutar.',
+        eyebrow: 'Prayer Rhythm & Consistency',
+        title: 'Namaz vakitlerini değil, namaz ritmini takip et.',
+        description:
+          'Vaktio+, namaz vakitlerini görmenin ötesine geçer. Kıldığın namazları işaretle, kaçırdıklarını takip et, haftalık düzenini gör ve günlük ibadet ritmini daha bilinçli hale getir.',
+        secondary:
+          'Vaktio+ vakitleri gösterir, ama asıl odağı namaz istikrarını görünür hale getirmektir.',
         iconAlt: 'Vaktio+ uygulama simgesi',
         ctas: [
           {
-            label: 'TestFlight aç',
-            href: testflightUrl,
+            label: 'App Store’dan İndir',
+            href: appStoreUrl,
             variant: 'primary',
+            badgeSrc: 'https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/tr-tr?releaseDate=1780099200',
           },
           {
-            label: 'App Store',
-            href: appStoreUrl.tr,
+            label: 'Google Play’den İndir',
+            href: playStoreUrl.tr,
             variant: 'secondary',
-            icon: 'app-store',
-          },
-          {
-            label: 'Android Closed Test',
-            href: site.androidTestPath,
-            variant: 'secondary',
+            badgeSrc: withBase('assets/apps/vaktio-plus/badge-google-play-tr.png'),
           },
         ],
       },
       sections: {
-        screenshots: 'Ekranlar',
-        features: 'Özellikler',
+        value: 'Konumlandırma',
+        features: 'Öne çıkanlar',
+        comparison: 'Neden Vaktio+?',
+        screenshots: 'Uygulamadan ekranlar',
+        privacy: 'Gizlilik ve odak',
+        download: 'Vaktio+ ile ritmini görünür tut',
+      },
+      value: {
+        title: 'Çoğu namaz uygulaması sana sadece bir sonraki vaktin ne zaman olduğunu söyler.',
+        description:
+          'Vaktio+ ise ibadet düzenini daha sakin, daha kişisel ve daha görünür hale getirmeye odaklanır.',
+      },
+      comparison: {
+        title: 'Vaktio+ ise şunu görünür hale getirir:',
+        items: [
+          'Bugün ritmini koruyabildin mi?',
+          'Hangi vakitlerde zorlanıyorsun?',
+          'Kaçırdığın namazları düzenli takip edebiliyor musun?',
+        ],
+      },
+      privacy: {
+        title: 'Vaktio+, ibadet takibini kişisel ve odaklı tutmak için tasarlanmıştır.',
       },
       screenshots: [
         'Vaktio+ ekran görüntüsü 1',
@@ -119,34 +139,28 @@ export const copy = {
       ],
       features: [
         {
-          title: 'Vakit takibi',
-          description: 'Günlük namaz akışını tek bakışta sakin biçimde izle.',
+          title: 'Namaz Ritmi Takibi',
+          description: 'Her namazı işaretle, günlük düzenini tek bakışta gör.',
         },
         {
-          title: 'Kaçırılan namazlar',
-          description: 'Kaza olan vakitleri düzenli ve görünür tut.',
+          title: 'Kaza Takibi',
+          description: 'Kaçırdığın vakitleri takip et, biriken kaza durumunu daha düzenli yönet.',
         },
         {
-          title: 'Manevi ilham',
-          description: 'Hadisler ve güzel sözlerle güne yumuşak bir dokunuş kat.',
+          title: 'İçgörüler ve Trendler',
+          description: 'En güçlü olduğun vakitleri, en çok zorlandığın alanları ve haftalık ritmini gör.',
         },
         {
-          title: 'Çevrimdışı kullanım',
-          description: 'Temel içeriklere internet olmadan da eriş.',
+          title: 'Namaz Vakitleri ve Kıble',
+          description: 'Konumuna göre vakitleri takip et, ihtiyaç duyduğunda kıble yönünü hızlıca bul.',
         },
         {
-          title: 'Paylaşılabilir kartlar',
-          description: 'Beğendiğin kartları tek dokunuşla paylaş.',
+          title: 'Günlük Manevi İçerik',
+          description: 'Ayet, hadis ve Esmaül Hüsna içerikleriyle güne anlamlı bir temas ekle.',
         },
         {
-          title: 'Detaylı metrikler',
-          description: 'Günlük ve haftalık ilerlemeyi temiz bir panelde gör.',
-        },
-        {
-          title: 'Daha fazlası yakında',
-          description: 'Yeni araçlar, içerikler ve ayrıntılar üzerinde çalışıyoruz.',
-          badge: 'Yakında',
-          variant: 'soon',
+          title: 'Widget’lar ve Bildirimler',
+          description: 'Kilit ekranı widget’ları, yeniden boyutlandırılabilir widget’lar, Live Activities ve sakin bildirimlerle ritmini görünür tut.',
         },
       ],
       footer: {
@@ -163,17 +177,12 @@ export const copy = {
       back: 'Ana sayfa',
       eyebrow: 'Destek',
       title: 'Destek',
-      lede: 'Vaktio+ için sorun, öneri veya mağaza inceleme notlarını buradan gönderebilirsin. Resmî destek e-postası ve TestFlight bağlantısı aşağıda.',
+      lede: 'Vaktio+ için sorun, öneri veya mağaza inceleme notlarını buradan gönderebilirsin. Resmî destek e-postası aşağıda.',
       emailCard: {
         title: 'E-posta desteği',
         subtitle: supportEmail,
         description: 'Vaktio+ sürüm 1.0.0 için doğrudan mesaj gönder.',
         href: site.supportMailto.tr,
-      },
-      testflightCard: {
-        title: 'TestFlight',
-        subtitle: 'iPhone beta ve tester geri bildirimi',
-        description: 'Kurulum ve test notları için aynı bağlantıyı kullan.',
       },
       checklistHeading: 'Gönderirken ekle',
       checklist: [
@@ -184,53 +193,6 @@ export const copy = {
       ],
       noteHeading: 'Kısa not',
       note: 'Destek mesajlarına mümkün olduğunca aynı gün içinde dönmeye çalışırız. Gizlilik veya veri silme sorularında da aynı e-posta kullanılabilir.',
-    },
-    androidTest: {
-      pageTitle: 'Android Closed Test · Vaktio+',
-      pageDescription: 'Vaktio+ Android closed test akışı ve test linkleri.',
-      back: 'Ana sayfa',
-      eyebrow: 'Android Closed Test',
-      title: 'Vaktio+ Closed Test',
-      lede: 'Google Play yayın süreci için uygulama şu anda zorunlu closed test aşamasındadır.',
-      intro: 'Sıra net: önce gruba katıl, sonra web üzerinden tester ol, en son uygulamayı indir.',
-      flowHeading: 'Test akışı',
-      groupUrl: 'https://groups.google.com/u/2/g/vaktio-testers',
-      flow: [
-        {
-          step: '1',
-          title: 'Gruba katıl',
-          description: 'Önce test grubuna erişim isteği gönder.',
-          cta: 'Gruba katıl',
-          href: 'https://groups.google.com/u/2/g/vaktio-testers',
-          note: 'İlk adım budur.',
-        },
-        {
-          step: '2',
-          title: 'Web üzerinden tester ol',
-          description: 'Opt-in sayfasını aç ve Become a tester adımını tamamla.',
-          cta: 'Web test linki',
-          href: 'https://play.google.com/apps/testing/com.hasanalay.vaktioplus',
-          note: 'Tester onayı burada verilir.',
-        },
-        {
-          step: '3',
-          title: 'Android indir',
-          description: 'Tester olduktan sonra Play Store üzerinden uygulamayı indir.',
-          cta: 'Android indir',
-          href: 'https://play.google.com/store/apps/details?id=com.hasanalay.vaktioplus',
-          note: 'Kurulum burada tamamlanır.',
-        },
-      ],
-      focusHeading: 'Özellikle test edilmesi istenenler',
-      focus: [
-        'Namaz vakitleri',
-        'Konum algılama',
-        'Bildirimler',
-        'Genel performans ve arayüz',
-      ],
-      feedbackHeading: 'Geri bildirim',
-      noteHeading: 'Geri bildirim',
-      note: 'Hata veya önerilerini bu grup üzerinden ya da özel mesajla paylaşabilirsin. Destek olduğun için teşekkürler.',
     },
     privacy: {
       pageTitle: 'Gizlilik Politikası · Vaktio+',
@@ -266,7 +228,6 @@ export const copy = {
           items: [
             'Namaz vakti aramalarında şehir / ilçe sorgusu harici namaz vakti servisine gönderilebilir',
             'Google Mobile Ads, reklam gösterildiğinde cihaz ve etkileşim verilerini işleyebilir',
-            'TestFlight, iPhone beta dağıtımı için Apple tarafından sağlanır',
           ],
         },
         {
@@ -286,35 +247,57 @@ export const copy = {
     common: {
       close: 'Close',
       language: 'Language',
+      downloadLabel: 'Download',
     },
     home: {
       pageTitle: 'Vaktio+ · HHStudio',
-      pageDescription: 'A calm product page for prayer times, qibla, and daily tracking.',
+      pageDescription: 'Vaktio+ is a calm companion built around prayer rhythm, consistency, and personal worship tracking.',
       hero: {
-        tagline: 'Keeps your prayer rhythm calm.',
+        eyebrow: 'Prayer Rhythm & Consistency',
+        title: 'Follow your prayer rhythm, not just prayer times.',
+        description:
+          'Vaktio+ goes beyond showing prayer times. Mark completed prayers, track missed ones, review your weekly rhythm, and build a more mindful daily worship routine.',
+        secondary:
+          'Vaktio+ shows prayer times, but its real focus is making prayer consistency visible.',
         iconAlt: 'Vaktio+ app icon',
         ctas: [
           {
-            label: 'Open TestFlight',
-            href: testflightUrl,
+            label: 'Download on the App Store',
+            href: appStoreUrl,
             variant: 'primary',
+            badgeSrc: 'https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1780099200',
           },
           {
-            label: 'App Store',
-            href: appStoreUrl.en,
+            label: 'Get it on Google Play',
+            href: playStoreUrl.en,
             variant: 'secondary',
-            icon: 'app-store',
-          },
-          {
-            label: 'Android Closed Test',
-            href: site.androidTestPath,
-            variant: 'secondary',
+            badgeSrc: withBase('assets/apps/vaktio-plus/badge-google-play-en.png'),
           },
         ],
       },
       sections: {
-        screenshots: 'Screens',
-        features: 'Features',
+        value: 'Positioning',
+        features: 'Core features',
+        comparison: 'Why Vaktio+?',
+        screenshots: 'App preview',
+        privacy: 'Privacy and focus',
+        download: 'Keep your rhythm visible with Vaktio+',
+      },
+      value: {
+        title: 'Most prayer apps focus on prayer times. Vaktio+ focuses on prayer consistency.',
+        description:
+          'It is designed as a calm, modern companion for keeping worship rhythm visible without turning the experience into noise.',
+      },
+      comparison: {
+        title: 'Instead of only showing the next prayer, Vaktio+ helps you ask:',
+        items: [
+          'Did you protect your rhythm today?',
+          'Which prayers are hardest to stay consistent with?',
+          'Are you tracking missed prayers with clarity?',
+        ],
+      },
+      privacy: {
+        title: 'Vaktio+ is designed to keep your worship tracking personal and focused.',
       },
       screenshots: [
         'Vaktio+ app screenshot 1',
@@ -326,34 +309,28 @@ export const copy = {
       ],
       features: [
         {
-          title: 'Prayer tracking',
-          description: 'Follow your daily prayer rhythm in one calm view.',
+          title: 'Prayer Rhythm Tracking',
+          description: 'Track each prayer and see your daily consistency at a glance.',
         },
         {
-          title: 'Missed prayers',
-          description: 'Keep missed prayers organized and visible.',
+          title: 'Missed Prayer Management',
+          description: 'Review missed prayers, monitor your backlog, and manage past days with more clarity.',
         },
         {
-          title: 'Spiritual inspiration',
-          description: 'Lift the day with hadiths and thoughtful words.',
+          title: 'Insights & Trends',
+          description: 'Discover your strongest prayers, identify where you struggle most, and follow your rhythm week by week.',
         },
         {
-          title: 'Offline ready',
-          description: 'Core content works even without a connection.',
+          title: 'Prayer Times & Qibla',
+          description: 'Follow accurate prayer times based on your location and find the qibla direction whenever you need it.',
         },
         {
-          title: 'Shareable cards',
-          description: 'Share the cards you like with a single tap.',
+          title: 'Daily Reflection',
+          description: 'Receive meaningful inspiration through selected verses, hadith, and Asma ul Husna.',
         },
         {
-          title: 'Detailed metrics',
-          description: 'Review daily and weekly trends in a clean panel.',
-        },
-        {
-          title: 'More coming soon',
-          description: 'New tools, content, and details are on the way.',
-          badge: 'Soon',
-          variant: 'soon',
+          title: 'Widgets & Notifications',
+          description: 'Keep your rhythm visible with lock screen widgets, resizable widgets, Live Activities, and gentle reminders.',
         },
       ],
       footer: {
@@ -370,17 +347,12 @@ export const copy = {
       back: 'Home',
       eyebrow: 'Support',
       title: 'Support',
-      lede: 'Send bug reports, suggestions, or store review notes here. The official support email and TestFlight link are below.',
+      lede: 'Send bug reports, suggestions, or store review notes here. The official support email is below.',
       emailCard: {
         title: 'Email support',
         subtitle: supportEmail,
         description: 'Send a direct message for Vaktio+ version 1.0.0.',
         href: site.supportMailto.en,
-      },
-      testflightCard: {
-        title: 'TestFlight',
-        subtitle: 'iPhone beta and tester feedback',
-        description: 'Use the same link for installation and test notes.',
       },
       checklistHeading: 'Include when you write',
       checklist: [
@@ -391,53 +363,6 @@ export const copy = {
       ],
       noteHeading: 'Short note',
       note: 'We try to reply to support messages within the same day whenever possible. Use the same email for privacy or data deletion questions.',
-    },
-    androidTest: {
-      pageTitle: 'Android Closed Test · Vaktio+',
-      pageDescription: 'The Vaktio+ Android closed test flow and links.',
-      back: 'Home',
-      eyebrow: 'Android Closed Test',
-      title: 'Vaktio+ Closed Test',
-      lede: 'The app is currently in the required closed test phase for Google Play release.',
-      intro: 'The flow is simple: join the group, become a tester on web, then install the app.',
-      flowHeading: 'Test flow',
-      groupUrl: 'https://groups.google.com/u/2/g/vaktio-testers',
-      flow: [
-        {
-          step: '1',
-          title: 'Join the group',
-          description: 'First, request access to the test group.',
-          cta: 'Join group',
-          href: 'https://groups.google.com/u/2/g/vaktio-testers',
-          note: 'This is the first step.',
-        },
-        {
-          step: '2',
-          title: 'Become a tester on web',
-          description: 'Open the opt-in page and complete the Become a tester step.',
-          cta: 'Web test link',
-          href: 'https://play.google.com/apps/testing/com.hasanalay.vaktioplus',
-          note: 'Tester approval happens here.',
-        },
-        {
-          step: '3',
-          title: 'Install Android',
-          description: 'After approval, download the app from Play Store.',
-          cta: 'Install Android',
-          href: 'https://play.google.com/store/apps/details?id=com.hasanalay.vaktioplus',
-          note: 'This completes setup.',
-        },
-      ],
-      focusHeading: 'What to test',
-      focus: [
-        'Prayer times',
-        'Location detection',
-        'Notifications',
-        'Overall performance and UI',
-      ],
-      feedbackHeading: 'Feedback',
-      noteHeading: 'Feedback',
-      note: 'You can share bugs or suggestions through this group or by direct message. Thanks for supporting the test.',
     },
     privacy: {
       pageTitle: 'Privacy Policy · Vaktio+',
@@ -473,7 +398,6 @@ export const copy = {
           items: [
             'Prayer time lookups may send city / district queries to an external prayer-time service',
             'Google Mobile Ads may process device and interaction data when ads are shown',
-            "TestFlight is Apple's service for distributing iPhone beta builds",
           ],
         },
         {

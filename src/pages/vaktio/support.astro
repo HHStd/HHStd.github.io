@@ -34,12 +34,6 @@ const text = copy[locale].support;
         <span data-i18n="support.emailCard.subtitle">{text.emailCard.subtitle}</span>
         <small data-i18n="support.emailCard.description">{text.emailCard.description}</small>
       </a>
-
-      <a class="support-card" href={site.testflightUrl} rel="noopener noreferrer" target="_blank">
-        <strong data-i18n="support.testflightCard.title">{text.testflightCard.title}</strong>
-        <span data-i18n="support.testflightCard.subtitle">{text.testflightCard.subtitle}</span>
-        <small data-i18n="support.testflightCard.description">{text.testflightCard.description}</small>
-      </a>
     </div>
 
     <section class="copy">
@@ -150,10 +144,6 @@ const text = copy[locale].support;
   @media (min-width: 720px) {
     .legal {
       padding: 26px;
-    }
-
-    .support-cards {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>

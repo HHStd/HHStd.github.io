@@ -27,32 +27,40 @@ const heroShots = app.screenshots.slice(0, 3);
           height="512"
           data-i18n-attrs={JSON.stringify({ alt: 'home.hero.iconAlt' })}
         />
-        <h1>{app.name}</h1>
-        <p class="hero-text" data-i18n="home.hero.tagline">{text.hero.tagline}</p>
+        <span class="hero-eyebrow" data-i18n="home.hero.eyebrow">{text.hero.eyebrow}</span>
+        <h1 data-i18n="home.hero.title">{text.hero.title}</h1>
+        <p class="hero-text hero-description" data-i18n="home.hero.description">{text.hero.description}</p>
+        <p class="hero-text hero-secondary" data-i18n="home.hero.secondary">{text.hero.secondary}</p>
 
         <div class="button-row hero-actions">
           {text.hero.ctas.map((cta, index) =>
             cta.href ? (
               <a
-                class={`button ${cta.variant === 'primary' ? 'button-primary' : 'button-secondary'}`}
+                class="button store-badge"
                 href={cta.href}
                 rel="noopener noreferrer"
                 target="_blank"
+                aria-label={cta.label}
+                data-i18n-attrs={JSON.stringify({
+                  href: `home.hero.ctas.${index}.href`,
+                  'aria-label': `home.hero.ctas.${index}.label`,
+                })}
+              >
+                <img
+                  class="store-badge-image"
+                  src={cta.badgeSrc}
+                  alt=""
+                  loading="eager"
+                  data-i18n-attrs={JSON.stringify({ src: `home.hero.ctas.${index}.badgeSrc` })}
+                />
+              </a>
+            ) : (
+              <span
+                class="button store-badge store-badge-disabled"
+                aria-disabled="true"
                 data-i18n={`home.hero.ctas.${index}.label`}
                 data-i18n-attrs={JSON.stringify({ href: `home.hero.ctas.${index}.href` })}
               >
-                {cta.icon === 'app-store' && (
-                  <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path
-                      d="M8.66 5.12a1.25 1.25 0 0 1 1.72.42l8.02 13.6a1.25 1.25 0 0 1-2.15 1.27l-8.02-13.6a1.25 1.25 0 0 1 .43-1.69Zm6.69-.83a1.25 1.25 0 0 1 .43 1.7L7.77 19.58a1.25 1.25 0 1 1-2.15-1.27L13.63 4.7a1.25 1.25 0 0 1 1.72-.41ZM4.5 16.5a1.25 1.25 0 0 1 1.25-1.25h12.5a1.25 1.25 0 1 1 0 2.5H5.75A1.25 1.25 0 0 1 4.5 16.5Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                )}
-                {cta.label}
-              </a>
-            ) : (
-              <span class="button button-secondary button-disabled" aria-disabled="true" data-i18n={`home.hero.ctas.${index}.label`}>
                 {cta.label}
               </span>
             ),
@@ -118,6 +126,38 @@ const heroShots = app.screenshots.slice(0, 3);
       </div>
     </section>
 
+    <section class="section value">
+      <div class="value-panel panel">
+        <h2 data-i18n="home.sections.value">{text.sections.value}</h2>
+        <h3 data-i18n="home.value.title">{text.value.title}</h3>
+        <p data-i18n="home.value.description">{text.value.description}</p>
+      </div>
+    </section>
+
+    <section class="section features">
+      <h2 data-i18n="home.sections.features">{text.sections.features}</h2>
+      <div class="feature-grid">
+        {text.features.map((feature, index) => (
+          <article class="feature panel">
+            <h3 data-i18n={`home.features.${index}.title`}>{feature.title}</h3>
+            <p data-i18n={`home.features.${index}.description`}>{feature.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section comparison">
+      <div class="comparison-panel panel">
+        <h2 data-i18n="home.sections.comparison">{text.sections.comparison}</h2>
+        <h3 data-i18n="home.comparison.title">{text.comparison.title}</h3>
+        <ul class="comparison-list">
+          {text.comparison.items.map((item, index) => (
+            <li data-i18n={`home.comparison.items.${index}`}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
     <section class="section screenshots">
       <h2 data-i18n="home.sections.screenshots">{text.sections.screenshots}</h2>
       <div class="shot-rail">
@@ -142,20 +182,42 @@ const heroShots = app.screenshots.slice(0, 3);
       </div>
     </section>
 
-    <section class="section features">
-      <h2 data-i18n="home.sections.features">{text.sections.features}</h2>
-      <div class="feature-grid">
-        {text.features.map((feature, index) => (
-          <article class={`feature panel ${feature.variant === 'soon' ? 'feature-soon' : ''}`}>
-            {feature.badge && (
-              <span class="feature-badge" data-i18n={`home.features.${index}.badge`}>
-                {feature.badge}
-              </span>
-            )}
-            <h3 data-i18n={`home.features.${index}.title`}>{feature.title}</h3>
-            <p data-i18n={`home.features.${index}.description`}>{feature.description}</p>
-          </article>
-        ))}
+    <section class="section privacy">
+      <div class="privacy-panel panel">
+        <h2 data-i18n="home.sections.privacy">{text.sections.privacy}</h2>
+        <p data-i18n="home.privacy.title">{text.privacy.title}</p>
+      </div>
+    </section>
+
+    <section class="section download">
+      <div class="download-panel panel">
+        <div class="download-copy">
+          <h2 data-i18n="home.sections.download">{text.sections.download}</h2>
+          <p class="download-text" data-i18n="home.hero.secondary">{text.hero.secondary}</p>
+        </div>
+        <div class="button-row hero-actions">
+          {text.hero.ctas.map((cta, index) => (
+            <a
+              class="button store-badge"
+              href={cta.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label={cta.label}
+              data-i18n-attrs={JSON.stringify({
+                href: `home.hero.ctas.${index}.href`,
+                'aria-label': `home.hero.ctas.${index}.label`,
+              })}
+            >
+              <img
+                class="store-badge-image"
+                src={cta.badgeSrc}
+                alt=""
+                loading="lazy"
+                data-i18n-attrs={JSON.stringify({ src: `home.hero.ctas.${index}.badgeSrc` })}
+              />
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   </main>
@@ -298,6 +360,20 @@ const heroShots = app.screenshots.slice(0, 3);
     gap: 16px;
   }
 
+  .hero-eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(24, 213, 225, 0.16);
+    background: rgba(24, 213, 225, 0.08);
+    color: var(--accent);
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
   .hero-icon {
     width: 60px;
     height: 60px;
@@ -314,11 +390,21 @@ const heroShots = app.screenshots.slice(0, 3);
 
   .hero-text {
     margin: 0;
-    max-width: 22ch;
+    max-width: 34ch;
     color: var(--muted);
     font-size: clamp(1.05rem, 2vw, 1.35rem);
     line-height: 1.45;
     letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    font-size: clamp(0.98rem, 1.7vw, 1.16rem);
+  }
+
+  .hero-secondary {
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
 
   .hero-actions {
@@ -327,14 +413,25 @@ const heroShots = app.screenshots.slice(0, 3);
     gap: 10px;
   }
 
-  .button-icon {
-    width: 18px;
-    height: 18px;
-    flex: 0 0 auto;
-    margin-right: 8px;
+  .store-badge {
+    padding: 0;
+    min-height: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
-  .button-disabled {
+  .store-badge:hover {
+    transform: translateY(-1px);
+  }
+
+  .store-badge-image {
+    display: block;
+    width: auto;
+    height: 64px;
+  }
+
+  .store-badge-disabled {
     opacity: 0.58;
     cursor: default;
   }
@@ -572,32 +669,66 @@ const heroShots = app.screenshots.slice(0, 3);
     gap: 14px;
   }
 
+  .value-panel,
+  .comparison-panel,
+  .privacy-panel,
+  .download-panel {
+    display: grid;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .value-panel h2,
+  .comparison-panel h2,
+  .privacy-panel h2,
+  .download-panel h2 {
+    color: var(--accent);
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .value-panel h3,
+  .comparison-panel h3 {
+    margin: 0;
+    max-width: 22ch;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  .value-panel p,
+  .comparison-list,
+  .privacy-panel p,
+  .download-text {
+    margin: 0;
+    max-width: 64ch;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .comparison-list {
+    padding-left: 18px;
+  }
+
+  .comparison-list li + li {
+    margin-top: 8px;
+  }
+
+  .download-panel {
+    align-items: center;
+  }
+
+  .download-copy {
+    display: grid;
+    gap: 10px;
+  }
+
   .feature {
     padding: 18px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-  }
-
-  .feature-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 10px;
-    margin-bottom: 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(24, 213, 225, 0.24);
-    background: rgba(24, 213, 225, 0.08);
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  .feature-soon {
-    background:
-      radial-gradient(circle at top right, rgba(24, 213, 225, 0.12), transparent 42%),
-      rgba(255, 255, 255, 0.03);
-    border-color: rgba(24, 213, 225, 0.2);
   }
 
   .feature h3 {
@@ -688,8 +819,9 @@ const heroShots = app.screenshots.slice(0, 3);
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .feature-soon {
-      grid-column: 1 / -1;
+    .download-panel {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
     }
 
     .shot-rail {
@@ -722,6 +854,11 @@ const heroShots = app.screenshots.slice(0, 3);
       width: 100%;
     }
 
+    .store-badge-image {
+      width: 100%;
+      height: auto;
+    }
+
     .hero-art {
       min-height: clamp(500px, 158vw, 660px);
     }
@@ -750,6 +887,10 @@ const heroShots = app.screenshots.slice(0, 3);
     .footer {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .download-panel {
+      padding: 18px;
     }
 
     .lightbox-panel {
